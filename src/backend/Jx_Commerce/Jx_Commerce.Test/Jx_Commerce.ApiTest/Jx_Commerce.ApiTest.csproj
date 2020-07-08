@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Jx_Commerce.Application\Jx_Commerce.SystemService\Jx_Commerce.SystemService.csproj" />
+    <ProjectReference Include="..\..\Jx_Commerce.Component\Jx_Commerce.CoreCommon\Jx_Commerce.CoreCommon.csproj" />
+    <ProjectReference Include="..\..\Jx_Commerce.Infrastructure\Jx_Commerce.Common\Jx_Commerce.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.2.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="log4net.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+
+</Project>
