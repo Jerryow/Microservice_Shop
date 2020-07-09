@@ -19,7 +19,7 @@ namespace Jx_Commerce.ApiTest
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-            .UseServiceProviderFactory(new AutofacServiceProviderFactory())
+            .UseServiceProviderFactory(new AutofacServiceProviderFactory())//autofac
              .ConfigureLogging((context, loggingBuilder) =>
              {
                  loggingBuilder.AddFilter("System", LogLevel.Warning);//¹ıÂËµôÃüÃû¿Õ¼ä

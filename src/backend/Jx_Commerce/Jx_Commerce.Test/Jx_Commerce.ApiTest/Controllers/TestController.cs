@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Jx_Commerce.Common.LogHelper;
 using Jx_Commerce.SystemService;
+using Microsoft.Extensions.Configuration;
 
 namespace Jx_Commerce.ApiTest.Controllers
 {
@@ -15,12 +16,14 @@ namespace Jx_Commerce.ApiTest.Controllers
     {
         private readonly ILogService _logService;
         private readonly ITest _test;
+        private readonly IConfiguration _configuration;
         public TestController(
             ILogService logService,
-             ITest test
-            )
+             ITest test,
+             IConfiguration configuration)
         {
             _logService = logService;
+            _configuration = configuration;
             _test = test;
         }
 
@@ -28,7 +31,8 @@ namespace Jx_Commerce.ApiTest.Controllers
         public IActionResult Get()
         {
             var data = _test.SaySomething("fvsdafdsfds");
-            return new JsonResult(new { code = "1", msg = data });
+            _logService.LogInfo("312");
+            return new JsonResult(new { code = "1", msg = data , con = _configuration.GetSection("DataAccess:DbType").Value,conn= _configuration.GetSection("DataAccess:ConnectionStr:Master").Value });
         }
     }
 }
