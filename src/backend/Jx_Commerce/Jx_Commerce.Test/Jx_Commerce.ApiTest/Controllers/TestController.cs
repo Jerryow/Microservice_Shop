@@ -34,5 +34,12 @@ namespace Jx_Commerce.ApiTest.Controllers
             _logService.LogInfo("312");
             return new JsonResult(new { code = "1", msg = data , con = _configuration.GetSection("DataAccess:DbType").Value,conn= _configuration.GetSection("DataAccess:ConnectionStr:Master").Value });
         }
+
+        [HttpGet]
+        public IActionResult GetUser()
+        {
+            var data = _test.GetSystemUser();
+            return new JsonResult(new { code = "1", msg = data });
+        }
     }
 }

@@ -37,15 +37,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jx_Commerce.Component", "Jx
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jx_Commerce.Infrastructure", "Jx_Commerce.Infrastructure", "{3247C1B6-3283-4A9A-B5E5-2B04179E43C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jx_Commerce.CoreCommon", "Jx_Commerce.Component\Jx_Commerce.CoreCommon\Jx_Commerce.CoreCommon.csproj", "{A063145E-1D95-48BB-80DD-F845916D5D38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jx_Commerce.CoreCommon", "Jx_Commerce.Component\Jx_Commerce.CoreCommon\Jx_Commerce.CoreCommon.csproj", "{A063145E-1D95-48BB-80DD-F845916D5D38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jx_Commerce.Common", "Jx_Commerce.Infrastructure\Jx_Commerce.Common\Jx_Commerce.Common.csproj", "{49241BC6-358B-4C2A-911B-9F02F42B3F6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jx_Commerce.Common", "Jx_Commerce.Infrastructure\Jx_Commerce.Common\Jx_Commerce.Common.csproj", "{49241BC6-358B-4C2A-911B-9F02F42B3F6D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jx_Commerce.Test", "Jx_Commerce.Test", "{CDB15670-06ED-43BB-BCC3-94DB2CA4D369}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jx_Commerce.ApiTest", "Jx_Commerce.Test\Jx_Commerce.ApiTest\Jx_Commerce.ApiTest.csproj", "{F7A61A58-4ABB-4E27-8C6B-3A0DC8FCBA30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jx_Commerce.ApiTest", "Jx_Commerce.Test\Jx_Commerce.ApiTest\Jx_Commerce.ApiTest.csproj", "{F7A61A58-4ABB-4E27-8C6B-3A0DC8FCBA30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jx_Commerce.DataAccess", "Jx_Commerce.Component\Jx_Commerce.DataAccess\Jx_Commerce.DataAccess.csproj", "{4F1EBFC9-DA38-4656-997C-36FBC6B09B62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jx_Commerce.DataAccess", "Jx_Commerce.Component\Jx_Commerce.DataAccess\Jx_Commerce.DataAccess.csproj", "{4F1EBFC9-DA38-4656-997C-36FBC6B09B62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jx_Commerce.ConsoleTest", "Jx_Commerce.Test\Jx_Commerce.ConsoleTest\Jx_Commerce.ConsoleTest.csproj", "{591D9754-3FA3-43D9-B166-AD6EF712BA4C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -117,6 +119,10 @@ Global
 		{4F1EBFC9-DA38-4656-997C-36FBC6B09B62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F1EBFC9-DA38-4656-997C-36FBC6B09B62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F1EBFC9-DA38-4656-997C-36FBC6B09B62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{591D9754-3FA3-43D9-B166-AD6EF712BA4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{591D9754-3FA3-43D9-B166-AD6EF712BA4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{591D9754-3FA3-43D9-B166-AD6EF712BA4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{591D9754-3FA3-43D9-B166-AD6EF712BA4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -138,6 +144,7 @@ Global
 		{49241BC6-358B-4C2A-911B-9F02F42B3F6D} = {3247C1B6-3283-4A9A-B5E5-2B04179E43C6}
 		{F7A61A58-4ABB-4E27-8C6B-3A0DC8FCBA30} = {CDB15670-06ED-43BB-BCC3-94DB2CA4D369}
 		{4F1EBFC9-DA38-4656-997C-36FBC6B09B62} = {3830C89C-8C58-490F-8AE2-A0A4BB94DC74}
+		{591D9754-3FA3-43D9-B166-AD6EF712BA4C} = {CDB15670-06ED-43BB-BCC3-94DB2CA4D369}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7E90C6E4-7B2C-40D6-99AD-74EA89EA9A52}

@@ -1,65 +1,76 @@
 ﻿using System;
 using System.Data;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
+using Jx_Commerce.DataAccess.DapperAccess.DapperBase;
+using Microsoft.Extensions.Configuration;
+using MySql.Data.MySqlClient;
 
 namespace Jx_Commerce.DataAccess.DapperAccess
 {
-    public class ExcuteDapperBase
+    public class ExcuteDapperBase<T> : IExcuteDapper<T>
     {
-        private readonly string _connectionString;
-
-        public ExcuteDapperBase(string connectionString)
+        private readonly string _connectionStr;
+        private readonly IConfiguration _configuration;
+        public ExcuteDapperBase(IConfiguration configuration)
         {
-            _connectionString = connectionString;
+            _configuration = configuration;
+            _connectionStr = _configuration.GetSection("DataAccess:ConnectionStr:Master").Value;
         }
 
         private IDbConnection CreateSqlConnection()
         {
-            return new SqlConnection(_connectionString);
+            return new MySqlConnection(_connectionStr);
         }
 
-        protected void Execute(Action<IDbConnection> handler)
-        {
-            using (IDbConnection connection = CreateSqlConnection())
-            {
-                handler(connection);
-            }
-        }
+        //public void Excute(Action<IDbConnection> handler)
+        //{
+        //    using (IDbConnection connection = CreateSqlConnection())
+        //    {
+        //        handler(connection);
+        //    }
+        //}
 
-        protected T Execute<T>(Func<IDbConnection, T> handler)
+        public T Excute<T>(Func<IDbConnection, T> handler)
         {
+            Console.WriteLine(_connectionStr);
             using (IDbConnection connection = CreateSqlConnection())
             {
+                Console.WriteLine(connection.State);
                 return handler(connection);
             }
         }
 
-        protected Task<T> ExecuteAsync<T>(Func<IDbConnection, Task<T>> handler)
-        {
-            using (IDbConnection connection = CreateSqlConnection())
-            {
-                return handler(connection);
-            }
-        }
+        //public async Task ExcuteAsync(Action<IDbConnection> handler)
+        //{
+        //    var task = Task.Factory.StartNew(() =>
+        //    {
+        //        using (IDbConnection connection = CreateSqlConnection())
+        //        {
+        //            handler(connection);
+        //        }
+        //    });
 
-        protected void ExecuteTransaction(Action<IDbConnection, IDbTransaction> action)
-        {
-            using (IDbConnection connection = CreateSqlConnection())
-            {
-                connection.Open();
-                IDbTransaction transaction = connection.BeginTransaction();
-                try
-                {
-                    action(connection, transaction);
-                    transaction.Commit();
-                }
-                catch (Exception ex)
-                {
-                    transaction.Rollback();
-                    throw ex;
-                }
-            }
-        }
+        //    await task;
+        //}
+
+        //public Task<int> ExcuteAsync(Action<IDbConnection, Task<int>> handler)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+
+        //public Task<T> ExcuteAsync(Action<IDbConnection, Task<T>> handler)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public int ExcuteResult(Action<IDbConnection> handler)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public void ExecuteTransaction(Action<IDbConnection, IDbTransaction> action)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

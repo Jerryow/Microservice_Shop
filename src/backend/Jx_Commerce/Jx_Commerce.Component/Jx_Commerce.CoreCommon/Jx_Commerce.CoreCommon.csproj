@@ -11,6 +11,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Jx_Commerce.Application\Jx_Commerce.SystemService\Jx_Commerce.SystemService.csproj" />
     <ProjectReference Include="..\..\Jx_Commerce.Infrastructure\Jx_Commerce.Common\Jx_Commerce.Common.csproj" />
+    <ProjectReference Include="..\Jx_Commerce.DataAccess\Jx_Commerce.DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Mapper\" />
   </ItemGroup>
 
 </Project>

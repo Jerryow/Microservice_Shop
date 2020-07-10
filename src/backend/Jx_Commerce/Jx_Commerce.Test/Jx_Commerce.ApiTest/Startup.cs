@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Autofac;
 using Jx_Commerce.CoreCommon.DependencyConfig;
+using Jx_Commerce.DataAccess.DapperAccess.Mapping;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +29,7 @@ namespace Jx_Commerce.ApiTest
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            ColumnMapper.SetMapper();
         }
         public void ConfigureContainer(ContainerBuilder builder)
         {
@@ -47,11 +49,11 @@ namespace Jx_Commerce.ApiTest
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
