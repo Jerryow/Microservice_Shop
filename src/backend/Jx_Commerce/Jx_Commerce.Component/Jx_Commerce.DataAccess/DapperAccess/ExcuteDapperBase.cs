@@ -20,7 +20,7 @@ namespace Jx_Commerce.DataAccess.DapperAccess
         {
             //_configuration = configuration;
             //_connectionStr = _configuration.GetSection("DataAccess:ConnectionStr:Master").Value;
-            _connectionStr = "server=59.110.240.200;user=root;pwd=jerryow;database=jerryow_test";
+            _connectionStr = "";
         }
 
         private IDbConnection CreateSqlConnection()

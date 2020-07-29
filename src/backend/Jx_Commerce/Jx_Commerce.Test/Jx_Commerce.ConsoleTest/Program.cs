@@ -119,7 +119,7 @@ namespace Jx_Commerce.ConsoleTest
                 var getData = Container.Container.Resolve<GetData>();
                 var data = getData.GetByID(2).Result;
 
-                //using (var conn = new MySqlConnection("server=59.110.240.200;user=root;pwd=jerryow;database=jerryow_test"))
+                //using (var conn = new MySqlConnection(""))
                 //{
                 //    var user = conn.QuerySet<sys_userinfo>()
                 //        .Where(x => x.PKID == 2)
