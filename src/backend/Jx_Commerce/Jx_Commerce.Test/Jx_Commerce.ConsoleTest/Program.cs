@@ -1,5 +1,9 @@
 ﻿using Dapper;
+using Jx_Commerce.Common.CustomAttr;
+using Jx_Commerce.ConsoleTest.Container.Base;
 using Jx_Commerce.ConsoleTest.Models;
+using Jx_Commerce.DataAccess.Models.Sys;
+using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 using Newtonsoft.Json.Linq;
 using System;
@@ -7,7 +11,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Jx_Commerce.ConsoleTest
 {
@@ -66,14 +72,16 @@ namespace Jx_Commerce.ConsoleTest
                 //sql = sql.SingleTranslate<Sys_UserInfo, int>(
                 //    x => x.PKID == 1 && x.Valid == true && x.UserName == "admin" && x.UserName.EndsWith("a") && x.CreatedTime == DateTime.Now
                 //    );
-                var uu = Guid.NewGuid();
-                var sql = "";
-                sql = sql.SingleTranslate<Sys_UserInfo, int>(x => x.CeatedTime <= DateTime.Now.AddHours(3) && x.UUID == uu);
+                //var uu = Guid.NewGuid();
+                //var sql = "";
+                //sql = sql.SingleTranslate<Sys_UserInfo, int>(x => x.CeatedTime <= DateTime.Now.AddHours(3) && x.UUID == uu);
 
                 //var ss = "DateTime.Now.AddDays(11000)";
                 //Console.WriteLine(ss.Split('.').Length);
-
-                Console.WriteLine(sql);
+                //var sql = "";
+                //sql = sql.GetSql<Sys_UserInfo>()
+                //         .WhereCondition<Sys_UserInfo, bool>(x => x.PKID  ==  1);
+                //Console.WriteLine(sql);
 
                 //Console.WriteLine(Convert.ToDateTime("DateTime.Now"));
             }
@@ -88,7 +96,36 @@ namespace Jx_Commerce.ConsoleTest
                 //Console.WriteLine(sql);
             }
 
+            //表达式Visitor测试
+            {
+                //var a = new {id = 1};
+                //var sql = "";
+                //var aa = new aa();
+                //sql = sql.ExpressionT<Sys_UserInfo>(x => x.UUID== Guid.NewGuid());
+                //Console.WriteLine(sql);
+            }
 
+            //aop
+            {
+                //var test = Container.Container.Resolve<ITestAop>();
+                //var data = test.Get(12321);
+                //Console.WriteLine(data.Msg);
+            }
+
+            //Kogel.Dapper
+            {
+
+                var builder = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                //.SetBasePath(@"D:\新点差\BackendServices\DataAccessService")
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                IConfigurationRoot configuration = builder.Build();
+                Container.Container.Register(configuration);
+
+                var user = Container.Container.Resolve<ISystem_UserService>();
+                var data = user.FirstOrDefault(x => x.PKID == 1);
+                
+            }
 
 
             Console.ReadKey();
@@ -97,7 +134,10 @@ namespace Jx_Commerce.ConsoleTest
 
     public static class TransferSql
     {
-
+        public static int getid()
+        {
+            return 1;
+        }
         #region Single
         /// <summary>
         /// 单表完全查询
@@ -251,18 +291,55 @@ namespace Jx_Commerce.ConsoleTest
         #endregion
 
     }
+    public class aa
+    {
+        public int getid()
+        {
+            return 1;
+        }
+    }
+    public static class CompareSql
+    {
+        public static string WhereCondition<T, TKey>(this string originalSql, Func<T, TKey> func)
+        {
+            StringBuilder whereBuilder = new StringBuilder();
+            whereBuilder.Append(" where ");
+            whereBuilder.Append($" {typeof(T).Name}.{typeof(TKey).Name} ");
+            return originalSql + whereBuilder.ToString();
+        }
+
+        public static string EqulsSql(this string left, string right)
+        {
+            return $" {left} = {right}";
+        }
+
+        public static string ExpressionT<T>(this string str, Expression<Func<T, bool>> expr = null)
+        {
+            StringBuilder sql = new StringBuilder();
+
+            if (expr != null)
+            {
+                sql.Append($" where ");
+                Visitor visitor = new Visitor();
+                visitor.SetName(expr, typeof(T).Name);
+                sql.Append(visitor.Condition());
+            }
+
+            return sql.ToString();
+        }
+    }
     public class Visitor : ExpressionVisitor
     {
         private Stack<string> _StringStack = new Stack<string>();
         private string TypeName { get; set; }
 
-        public Expression SetName(Expression node, string name)
+        public System.Linq.Expressions.Expression SetName(System.Linq.Expressions.Expression node, string name)
         {
             this.TypeName = name;
             return Visit(node);
         }
 
-        public override Expression Visit(Expression node)
+        public override System.Linq.Expressions.Expression Visit(System.Linq.Expressions.Expression node)
         {
             return base.Visit(node);
         }
@@ -279,7 +356,7 @@ namespace Jx_Commerce.ConsoleTest
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        protected override Expression VisitBinary(BinaryExpression node)
+        protected override System.Linq.Expressions.Expression VisitBinary(BinaryExpression node)
         {
             if (node == null) throw new ArgumentNullException("BinaryExpression");
 
@@ -316,7 +393,7 @@ namespace Jx_Commerce.ConsoleTest
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        protected override Expression VisitMember(MemberExpression node)
+        protected override System.Linq.Expressions.Expression VisitMember(MemberExpression node)
         {
             if (node == null) throw new ArgumentNullException("MemberExpression");
             this._StringStack.Push(TypeName + "." + node.Member.Name + " ");
@@ -328,7 +405,7 @@ namespace Jx_Commerce.ConsoleTest
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
-        protected override Expression VisitConstant(ConstantExpression node)
+        protected override System.Linq.Expressions.Expression VisitConstant(ConstantExpression node)
         {
             if (node == null) throw new ArgumentNullException("ConstantExpression");
 
@@ -372,10 +449,12 @@ namespace Jx_Commerce.ConsoleTest
         /// </summary>
         /// <param name="m"></param>
         /// <returns></returns>
-        protected override Expression VisitMethodCall(MethodCallExpression m)
+        protected override System.Linq.Expressions.Expression VisitMethodCall(MethodCallExpression m)
         {
             if (m == null) throw new ArgumentNullException("MethodCallExpression");
 
+            //var obj = Activator.CreateInstance(type);
+            //var val = obj.
             string format;
             switch (m.Method.Name)
             {
@@ -392,7 +471,22 @@ namespace Jx_Commerce.ConsoleTest
                     break;
 
                 default:
-                    throw new NotSupportedException(m.NodeType + " is not supported!");
+                    var cl = MethodInfoExtensions.GetBaseDefinition(m.Method);
+                    var type = Type.GetType(cl.DeclaringType.FullName);
+                    if (type.IsAbstract)
+                    {
+                        var me = type.GetMethod(m.Method.Name);
+                        var data = me.Invoke(type, null);
+                    }
+                    else
+                    {
+                        var obj = Activator.CreateInstance(type);
+                        var me = type.GetMethod(m.Method.Name);
+                        var data = me.Invoke(obj, null);
+                    }
+
+                    format = " {0} = {1} ";
+                    break;
             }
             this.Visit(m.Object);
             this.Visit(m.Arguments[0]);
@@ -404,4 +498,5 @@ namespace Jx_Commerce.ConsoleTest
             return m;
         }
     }
+
 }

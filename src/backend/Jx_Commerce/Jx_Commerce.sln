@@ -3,31 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jx_Commerce.UserModule", "Jx_Commerce.Api\Jx_Commerce.UserModule\Jx_Commerce.UserModule.csproj", "{5A26E210-E56D-40B7-8C02-192488515FCA}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jx_Commerce.Api", "Jx_Commerce.Api", "{749588E3-72F8-4200-8CC5-326EC6584E0C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jx_Commerce.ProductModule", "Jx_Commerce.Api\Jx_Commerce.ProductModule\Jx_Commerce.ProductModule.csproj", "{3878BBE8-B9B5-46A3-8F12-173702CF48C3}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jx_Commerce.CartModule", "Jx_Commerce.Api\Jx_Commerce.CartModule\Jx_Commerce.CartModule.csproj", "{0BD40AF7-919C-4757-BB1C-A0184B7A559D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jx_Commerce.OrderModule", "Jx_Commerce.Api\Jx_Commerce.OrderModule\Jx_Commerce.OrderModule.csproj", "{5D90D7DB-BE51-4612-9584-8C61CB555B9E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jx_Commerce.ShopModule", "Jx_Commerce.Api\Jx_Commerce.ShopModule\Jx_Commerce.ShopModule.csproj", "{3FD94748-1BA0-46EA-A33F-C11726DC57A7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jx_Commerce.SystemModule", "Jx_Commerce.Api\Jx_Commerce.SystemModule\Jx_Commerce.SystemModule.csproj", "{603AE6C2-D840-4895-BAF5-86686D839030}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jx_Commerce.Application", "Jx_Commerce.Application", "{67AA30C3-A106-4226-84C8-BD68F4C6AED9}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jx_Commerce.UserService", "Jx_Commerce.Application\Jx_Commerce.UserService\Jx_Commerce.UserService.csproj", "{34E01E7D-0605-4AE8-89A7-B7AF37CBCDD7}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jx_Commerce.CartService", "Jx_Commerce.Application\Jx_Commerce.CartService\Jx_Commerce.CartService.csproj", "{0A4F1491-122E-4452-9231-E03A157113AD}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jx_Commerce.OrderService", "Jx_Commerce.Application\Jx_Commerce.OrderService\Jx_Commerce.OrderService.csproj", "{DE8A113D-2700-4362-92ED-335A37560006}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jx_Commerce.ShopService", "Jx_Commerce.Application\Jx_Commerce.ShopService\Jx_Commerce.ShopService.csproj", "{8FB803DF-651D-4B6A-A67F-86ECBF428AFC}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jx_Commerce.ProductService", "Jx_Commerce.Application\Jx_Commerce.ProductService\Jx_Commerce.ProductService.csproj", "{42D12553-28BE-4237-A16D-A97F50ACF192}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jx_Commerce.SystemService", "Jx_Commerce.Application\Jx_Commerce.SystemService\Jx_Commerce.SystemService.csproj", "{17B63D01-EA60-43E4-9970-56F35D66FD26}"
 EndProject
@@ -51,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jx_Commerce.ConsoleTest", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Jx_Commerce.Services", "Jx_Commerce.Services", "{3BB4F6F6-89AB-4EBC-AA4F-F77EB8A0CD85}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jx_Commerce.Ocelot", "Jx_Commerce.Services\Jx_Commerce.Ocelot\Jx_Commerce.Ocelot.csproj", "{E32D4851-1E3C-4D09-B47E-64D1D147C0D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jx_Commerce.Ocelot", "Jx_Commerce.Services\Jx_Commerce.Ocelot\Jx_Commerce.Ocelot.csproj", "{E32D4851-1E3C-4D09-B47E-64D1D147C0D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,50 +39,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5A26E210-E56D-40B7-8C02-192488515FCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A26E210-E56D-40B7-8C02-192488515FCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5A26E210-E56D-40B7-8C02-192488515FCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5A26E210-E56D-40B7-8C02-192488515FCA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3878BBE8-B9B5-46A3-8F12-173702CF48C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3878BBE8-B9B5-46A3-8F12-173702CF48C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3878BBE8-B9B5-46A3-8F12-173702CF48C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3878BBE8-B9B5-46A3-8F12-173702CF48C3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BD40AF7-919C-4757-BB1C-A0184B7A559D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BD40AF7-919C-4757-BB1C-A0184B7A559D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BD40AF7-919C-4757-BB1C-A0184B7A559D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BD40AF7-919C-4757-BB1C-A0184B7A559D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5D90D7DB-BE51-4612-9584-8C61CB555B9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5D90D7DB-BE51-4612-9584-8C61CB555B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5D90D7DB-BE51-4612-9584-8C61CB555B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5D90D7DB-BE51-4612-9584-8C61CB555B9E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3FD94748-1BA0-46EA-A33F-C11726DC57A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3FD94748-1BA0-46EA-A33F-C11726DC57A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3FD94748-1BA0-46EA-A33F-C11726DC57A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3FD94748-1BA0-46EA-A33F-C11726DC57A7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{603AE6C2-D840-4895-BAF5-86686D839030}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{603AE6C2-D840-4895-BAF5-86686D839030}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{603AE6C2-D840-4895-BAF5-86686D839030}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{603AE6C2-D840-4895-BAF5-86686D839030}.Release|Any CPU.Build.0 = Release|Any CPU
-		{34E01E7D-0605-4AE8-89A7-B7AF37CBCDD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34E01E7D-0605-4AE8-89A7-B7AF37CBCDD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34E01E7D-0605-4AE8-89A7-B7AF37CBCDD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34E01E7D-0605-4AE8-89A7-B7AF37CBCDD7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0A4F1491-122E-4452-9231-E03A157113AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0A4F1491-122E-4452-9231-E03A157113AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0A4F1491-122E-4452-9231-E03A157113AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0A4F1491-122E-4452-9231-E03A157113AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DE8A113D-2700-4362-92ED-335A37560006}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE8A113D-2700-4362-92ED-335A37560006}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE8A113D-2700-4362-92ED-335A37560006}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE8A113D-2700-4362-92ED-335A37560006}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8FB803DF-651D-4B6A-A67F-86ECBF428AFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8FB803DF-651D-4B6A-A67F-86ECBF428AFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8FB803DF-651D-4B6A-A67F-86ECBF428AFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8FB803DF-651D-4B6A-A67F-86ECBF428AFC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{42D12553-28BE-4237-A16D-A97F50ACF192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{42D12553-28BE-4237-A16D-A97F50ACF192}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{42D12553-28BE-4237-A16D-A97F50ACF192}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{42D12553-28BE-4237-A16D-A97F50ACF192}.Release|Any CPU.Build.0 = Release|Any CPU
 		{17B63D01-EA60-43E4-9970-56F35D66FD26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{17B63D01-EA60-43E4-9970-56F35D66FD26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17B63D01-EA60-43E4-9970-56F35D66FD26}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -136,17 +76,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{5A26E210-E56D-40B7-8C02-192488515FCA} = {749588E3-72F8-4200-8CC5-326EC6584E0C}
-		{3878BBE8-B9B5-46A3-8F12-173702CF48C3} = {749588E3-72F8-4200-8CC5-326EC6584E0C}
-		{0BD40AF7-919C-4757-BB1C-A0184B7A559D} = {749588E3-72F8-4200-8CC5-326EC6584E0C}
-		{5D90D7DB-BE51-4612-9584-8C61CB555B9E} = {749588E3-72F8-4200-8CC5-326EC6584E0C}
-		{3FD94748-1BA0-46EA-A33F-C11726DC57A7} = {749588E3-72F8-4200-8CC5-326EC6584E0C}
 		{603AE6C2-D840-4895-BAF5-86686D839030} = {749588E3-72F8-4200-8CC5-326EC6584E0C}
-		{34E01E7D-0605-4AE8-89A7-B7AF37CBCDD7} = {67AA30C3-A106-4226-84C8-BD68F4C6AED9}
-		{0A4F1491-122E-4452-9231-E03A157113AD} = {67AA30C3-A106-4226-84C8-BD68F4C6AED9}
-		{DE8A113D-2700-4362-92ED-335A37560006} = {67AA30C3-A106-4226-84C8-BD68F4C6AED9}
-		{8FB803DF-651D-4B6A-A67F-86ECBF428AFC} = {67AA30C3-A106-4226-84C8-BD68F4C6AED9}
-		{42D12553-28BE-4237-A16D-A97F50ACF192} = {67AA30C3-A106-4226-84C8-BD68F4C6AED9}
 		{17B63D01-EA60-43E4-9970-56F35D66FD26} = {67AA30C3-A106-4226-84C8-BD68F4C6AED9}
 		{A063145E-1D95-48BB-80DD-F845916D5D38} = {3830C89C-8C58-490F-8AE2-A0A4BB94DC74}
 		{49241BC6-358B-4C2A-911B-9F02F42B3F6D} = {3247C1B6-3283-4A9A-B5E5-2B04179E43C6}

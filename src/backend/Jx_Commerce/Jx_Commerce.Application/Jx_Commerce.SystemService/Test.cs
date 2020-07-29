@@ -10,35 +10,20 @@ namespace Jx_Commerce.SystemService
     public interface ITest
     {
         string SaySomething(string msg);
-
-        System_User GetSystemUser();
+        [AopAttr]
+        System_User GetSystemUser(int id);
         Task<List<System_User>> GetSystemUserListAsync();
     }
     public class Test : ITest
     {
-        private readonly IExcuteDapper<System_User> _systemUser;
-        public Test(IExcuteDapper<System_User> systemUser)
+        private readonly IExcuteDapperInterface<System_User> _systemUser;
+        public Test(IExcuteDapperInterface<System_User> systemUser)
         {
             _systemUser = systemUser;
         }
-        public System_User GetSystemUser()
+        public System_User GetSystemUser(int id)
         {
-            return _systemUser.Excute(connection =>
-            {
-                var sql = "select * from sys_userinfo where id = 1";
-                //return connection.Query<System_User>(sql).Select(x => new System_User()
-                //{
-                //    PKID = x.id,
-                //    UserName = x.name,
-                //    CellPhone = x.phone,
-                //    Password = x.password,
-                //    Valid = x.valid,
-                //    CeatedTime = x.createdtime,
-                //    LastModifiedTime = x.lastmodifiedtime,
-                //    Remark = x.remark
-                //});
-                return connection.Query<System_User>(sql);
-            }).FirstOrDefault();
+            return _systemUser.Get(id);
         }
 
         public Task<List<System_User>> GetSystemUserListAsync()

@@ -36,9 +36,9 @@ namespace Jx_Commerce.ApiTest.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetUser()
+        public IActionResult GetUser(int id)
         {
-            var data = _test.GetSystemUser();
+            var data = _test.GetSystemUser(id);
             return new JsonResult(new { code = "1", msg = data });
         }
     }

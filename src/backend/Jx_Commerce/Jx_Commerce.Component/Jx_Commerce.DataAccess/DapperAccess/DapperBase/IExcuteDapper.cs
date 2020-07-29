@@ -13,7 +13,16 @@ namespace Jx_Commerce.DataAccess.DapperAccess.DapperBase
         //Task ExcuteAsync(Action<IDbConnection> handler);
         //Task<int> ExcuteAsync(Action<IDbConnection, Task<int>> handler);
         T Excute<T>(Func<IDbConnection, T> handler);
-        //Task<T> ExcuteAsync(Action<IDbConnection,Task<T>> handler);
+        Task<T> ExcuteAsync<T>(Func<IDbConnection, Task<T>> handler);
         //void ExecuteTransaction(Action<IDbConnection, IDbTransaction> action);
+    }
+
+    public interface IExcuteDapperInterface<T>
+        where T : class
+    {
+        T Get(int id);
+        Task<T> GetAsync();
+        List<T> GetList();
+        Task<List<T>> GetListAsync();
     }
 }
