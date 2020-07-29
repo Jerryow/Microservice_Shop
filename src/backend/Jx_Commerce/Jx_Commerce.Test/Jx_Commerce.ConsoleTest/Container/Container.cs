@@ -16,17 +16,22 @@ namespace Jx_Commerce.ConsoleTest.Container
 
         public static T Resolve<T>()
         {
+            if (_container == null)
+            {
+                Register();
+            }
             return (T)_container.Resolve<T>();
         }
 
-        public static void Register(IConfiguration configuration)
+        public static void Register()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterType<IConfiguration>().SingleInstance();//配置
             builder.RegisterGeneric(typeof(ExcuteDapperBase<>)).As(typeof(IExcuteDapper<>)).InstancePerDependency();
             builder.RegisterType<TestAop>().As<ITestAop>().SingleInstance();
             builder.RegisterType<System_UserService>().As<ISystem_UserService>().InstancePerDependency();
+            builder.RegisterGeneric(typeof(System_UserServiceT<>)).As(typeof(ISystem_UserServiceT<>)).InstancePerDependency();
             builder.RegisterType<Test>().As<ITest>().SingleInstance();
+            builder.RegisterType<GetData>().InstancePerDependency();
             _container = builder.Build();
         }
     }

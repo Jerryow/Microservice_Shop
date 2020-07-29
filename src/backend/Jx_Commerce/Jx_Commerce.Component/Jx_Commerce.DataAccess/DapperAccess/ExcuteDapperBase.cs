@@ -14,11 +14,13 @@ namespace Jx_Commerce.DataAccess.DapperAccess
     public class ExcuteDapperBase<T> : IExcuteDapper<T>
     {
         private readonly string _connectionStr;
-        private readonly IConfiguration _configuration;
-        public ExcuteDapperBase(IConfiguration configuration)
+        //private readonly IConfiguration _configuration;
+        //public ExcuteDapperBase(IConfiguration configuration)
+        public ExcuteDapperBase()
         {
-            _configuration = configuration;
-            _connectionStr = _configuration.GetSection("DataAccess:ConnectionStr:Master").Value;
+            //_configuration = configuration;
+            //_connectionStr = _configuration.GetSection("DataAccess:ConnectionStr:Master").Value;
+            _connectionStr = "server=59.110.240.200;user=root;pwd=jerryow;database=jerryow_test";
         }
 
         private IDbConnection CreateSqlConnection()

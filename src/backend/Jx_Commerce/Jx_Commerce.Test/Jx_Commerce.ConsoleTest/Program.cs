@@ -14,6 +14,8 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Kogel.Dapper.Extension;
+using Kogel.Dapper.Extension.MySql;
 
 namespace Jx_Commerce.ConsoleTest
 {
@@ -114,21 +116,33 @@ namespace Jx_Commerce.ConsoleTest
 
             //Kogel.Dapper
             {
+                var getData = Container.Container.Resolve<GetData>();
+                var data = getData.GetByID(2).Result;
 
-                var builder = new ConfigurationBuilder()
-                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                //.SetBasePath(@"D:\新点差\BackendServices\DataAccessService")
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-                IConfigurationRoot configuration = builder.Build();
-                Container.Container.Register(configuration);
-
-                var user = Container.Container.Resolve<ISystem_UserService>();
-                var data = user.FirstOrDefault(x => x.PKID == 1);
-                
+                //using (var conn = new MySqlConnection("server=59.110.240.200;user=root;pwd=jerryow;database=jerryow_test"))
+                //{
+                //    var user = conn.QuerySet<sys_userinfo>()
+                //        .Where(x => x.PKID == 2)
+                //        .Get();
+                //}
             }
 
 
             Console.ReadKey();
+        }
+    }
+
+    public class GetData
+    {
+        private readonly ISystem_UserServiceT<System_User> _service;
+        public GetData(ISystem_UserServiceT<System_User> service)
+        {
+            _service = service;
+        }
+
+        public async Task<System_User> GetByID(int id)
+        {
+            return await _service.GetByIDAsync(2);
         }
     }
 

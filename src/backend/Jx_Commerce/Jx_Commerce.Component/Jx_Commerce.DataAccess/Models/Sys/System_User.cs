@@ -2,14 +2,15 @@
 using Jx_Commerce.DataAccess.DapperAccess.Mapping;
 using Dapper;
 using Jx_Commerce.Common.CustomAttr;
+using System.ComponentModel.DataAnnotations.Schema;
+using Kogel.Dapper.Extension.Attributes;
+using Jx_Commerce.DataAccess.DapperAccess.Entity;
 
 namespace Jx_Commerce.DataAccess.Models.Sys
 {
-    [MappingTable("sys_userinfo")]
-    public class System_User
+    [Display(Rename = "sys_userinfo")]
+    public class System_User : ModelEntity
     {
-        public int PKID { get; set; }
-
         public string UserName { get; set; }
 
         public string CellPhone { get; set; }
