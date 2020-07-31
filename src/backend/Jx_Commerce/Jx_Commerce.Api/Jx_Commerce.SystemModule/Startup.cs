@@ -73,11 +73,12 @@ namespace Jx_Commerce.SystemModule
 
             //app.UseHttpsRedirection();
 
-            //∑¿µ¡¡¥
-            app.UseMiddleware<RefuseStealingMiddleware>();
 
             //swagger
             app.UseSwaggerBuilder(Assembly.GetExecutingAssembly().GetName().Name);
+
+            //∑¿µ¡¡¥
+            app.UseMiddleware<RefuseStealingMiddleware>();
 
             //∑√Œ token
             app.UseMiddleware<AuthorizeMiddleWare>();

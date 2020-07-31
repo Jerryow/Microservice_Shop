@@ -19,10 +19,11 @@ namespace Jx_Commerce.CoreCommon.Middlewares.Configurations
         public async Task Invoke(HttpContext context)
         {
             string url = context.Request.Path.Value;
-            if (url.ToLower().EndsWith(".jpg")||
-                url.ToLower().EndsWith(".png") ||
-                url.ToLower().EndsWith(".gif")
-                )
+
+            if (url.ToLower().EndsWith(".jpg") ||
+               url.ToLower().EndsWith(".png") ||
+               url.ToLower().EndsWith(".gif")
+               )
             {
                 string urlReferrer = context.Response.Headers["Referer"];//http头的信息,包含当前请求的页面域名
                 if (string.IsNullOrWhiteSpace(urlReferrer))//直接访问
@@ -39,6 +40,7 @@ namespace Jx_Commerce.CoreCommon.Middlewares.Configurations
                 }
             }
             await next(context);
+
         }
 
         public async Task SetForBiddenImg(HttpContext context)

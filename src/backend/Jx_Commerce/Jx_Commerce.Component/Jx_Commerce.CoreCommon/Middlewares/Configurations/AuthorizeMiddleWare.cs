@@ -25,9 +25,7 @@ namespace Jx_Commerce.CoreCommon.Middlewares.Configurations
             }
             else
             {
-
-                var url = context.Request.GetDisplayUrl();
-                if (url.EndsWith("index.html"))
+                if (context.Request.GetDisplayUrl().EndsWith("index.html"))
                 {
                     await this._next.Invoke(context);
                 }

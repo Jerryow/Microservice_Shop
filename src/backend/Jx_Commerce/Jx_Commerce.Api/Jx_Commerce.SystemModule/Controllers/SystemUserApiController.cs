@@ -50,5 +50,7 @@ namespace Jx_Commerce.SystemModule.Controllers
         {
             return Succcess(await _queryRepository.GetAllListAsync());
         }
+
+        
     }
 }
