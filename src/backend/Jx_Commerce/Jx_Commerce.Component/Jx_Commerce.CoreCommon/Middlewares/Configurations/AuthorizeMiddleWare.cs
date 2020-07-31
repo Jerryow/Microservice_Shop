@@ -25,7 +25,7 @@ namespace Jx_Commerce.CoreCommon.Middlewares.Configurations
             }
             else
             {
-                if (context.Request.GetDisplayUrl().EndsWith("index.html"))
+                if (context.Request.GetDisplayUrl().ToLower().EndsWith("check"))
                 {
                     await this._next.Invoke(context);
                 }

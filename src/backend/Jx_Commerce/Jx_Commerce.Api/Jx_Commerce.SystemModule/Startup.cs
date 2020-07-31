@@ -18,6 +18,7 @@ using Newtonsoft.Json.Serialization;
 using Jx_Commerce.CoreCommon.Middlewares.ConfigureServices;
 using Jx_Commerce.CoreCommon.Middlewares.Configurations.Extend;
 using System.Reflection;
+using Jx_Commerce.CoreCommon.Consul.Register;
 
 namespace Jx_Commerce.SystemModule
 {
@@ -91,6 +92,9 @@ namespace Jx_Commerce.SystemModule
             {
                 endpoints.MapControllers();
             });
+
+            //×¢²áConsul
+            this.Configuration.ConsulRegist();
         }
     }
 }

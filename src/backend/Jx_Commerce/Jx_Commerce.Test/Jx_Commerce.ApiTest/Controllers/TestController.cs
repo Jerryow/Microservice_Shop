@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Jx_Commerce.DataAccess.DapperAccess.DapperBase;
 using Jx_Commerce.DataAccess.Models.Sys;
 using Dapper;
+using System.Net.Http;
 
 namespace Jx_Commerce.ApiTest.Controllers
 {
@@ -66,6 +67,28 @@ namespace Jx_Commerce.ApiTest.Controllers
             //});
 
             return new JsonResult(new { code = "1", msg = data, list = list });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var data = Jx_Commerce.CoreCommon.Consul.Client.ConsulClientHandler.GetServices("http://192.168.200.111:8510", "Jx_Commerce.SystemModule");
+            Console.WriteLine(data.Item1);
+            Console.WriteLine(data.Item2);
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer 123");
+                HttpRequestMessage msg = new HttpRequestMessage();
+                msg.Method = HttpMethod.Get;
+                //msg.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer 123");
+                msg.RequestUri = new Uri($"http://{data.Item1}:{data.Item2}/api/SystemUserApi/GetSystemUserList");
+                var res = client.SendAsync(msg).Result;
+                var list = await res.Content.ReadAsStringAsync();
+                Console.WriteLine(list);
+                var users = Newtonsoft.Json.JsonConvert.DeserializeObject<System_User>(list);
+                return new JsonResult(new { code = "1", data = list });
+            }
+
         }
     }
 }

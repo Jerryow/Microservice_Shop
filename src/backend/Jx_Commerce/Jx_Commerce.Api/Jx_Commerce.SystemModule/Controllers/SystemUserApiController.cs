@@ -37,7 +37,7 @@ namespace Jx_Commerce.SystemModule.Controllers
         [HttpGet]
         public async Task<IActionResult> GetSystemUserByID(int id)
         {
-            return Succcess(await _queryRepository.GetByIDAsync(id));
+            return Success(await _queryRepository.GetByIDAsync(id));
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Jx_Commerce.SystemModule.Controllers
         [HttpGet]
         public async Task<IActionResult> GetSystemUserList()
         {
-            return Succcess(await _queryRepository.GetAllListAsync());
+            return Success(await _queryRepository.GetAllListAsync());
         }
 
         

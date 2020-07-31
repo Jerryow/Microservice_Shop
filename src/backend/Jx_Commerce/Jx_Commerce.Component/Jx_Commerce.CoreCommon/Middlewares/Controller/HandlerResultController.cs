@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 
 namespace Jx_Commerce.CoreCommon.Middlewares.Controller
 {
@@ -8,11 +10,20 @@ namespace Jx_Commerce.CoreCommon.Middlewares.Controller
     {
         #region 成功
         /// <summary>
+        /// 成功状态码
+        /// </summary>
+        /// <returns></returns>
+        protected HttpResponseMessage Success()
+        {
+            return new HttpResponseMessage(HttpStatusCode.OK);
+        }
+
+        /// <summary>
         /// 成功消息
         /// </summary>
         /// <param name="msg">消息</param>
         /// <returns></returns>
-        protected IActionResult Succcess(string msg)
+        protected IActionResult Success(string msg)
         {
             return new JsonResult(new { code = "1", msg = msg });
         }
@@ -23,7 +34,7 @@ namespace Jx_Commerce.CoreCommon.Middlewares.Controller
         /// <param name="msg">消息</param>
         /// <param name="data">数据</param>
         /// <returns></returns>
-        protected IActionResult Succcess(string msg, object data)
+        protected IActionResult Success(string msg, object data)
         {
             return new JsonResult(new { code = "1", msg = msg, data = data });
         }
@@ -33,7 +44,7 @@ namespace Jx_Commerce.CoreCommon.Middlewares.Controller
         /// </summary>
         /// <param name="data">数据</param>
         /// <returns></returns>
-        protected IActionResult Succcess(object data)
+        protected IActionResult Success(object data)
         {
             return new JsonResult(new { code = "1", msg = "成功", data = data });
         }
@@ -44,7 +55,7 @@ namespace Jx_Commerce.CoreCommon.Middlewares.Controller
         /// <param name="msg">消息</param>
         /// <param name="data">数据</param>
         /// <returns></returns>
-        protected IActionResult SucccessNull(string msg, object data)
+        protected IActionResult SuccessNull(string msg, object data)
         {
             return new JsonResult(new { code = "2", msg = msg, data = data });
         }
