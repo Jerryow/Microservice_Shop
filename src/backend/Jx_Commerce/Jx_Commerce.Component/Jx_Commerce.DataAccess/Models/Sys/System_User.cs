@@ -9,8 +9,9 @@ using Jx_Commerce.DataAccess.DapperAccess.Entity;
 namespace Jx_Commerce.DataAccess.Models.Sys
 {
     [Display(Rename = "sys_userinfo")]
-    public class System_User : ModelEntity
+    public class System_User : ModelEntity<int>
     {
+        [Display(Rename = "UserName")]
         public string UserName { get; set; }
 
         public string CellPhone { get; set; }

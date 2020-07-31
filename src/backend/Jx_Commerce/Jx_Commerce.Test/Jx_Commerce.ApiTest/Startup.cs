@@ -1,18 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Autofac;
 using Jx_Commerce.CoreCommon.DependencyConfig;
-using Jx_Commerce.DataAccess.DapperAccess.Mapping;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using System.Text.Json;
 
 namespace Jx_Commerce.ApiTest
 {
@@ -29,7 +24,22 @@ namespace Jx_Commerce.ApiTest
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            ColumnMapper.SetMapper();
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson
+                (options =>
+                {
+                    //设置时间格式
+                    options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+                    //忽略循环引用
+                    options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+                    //数据格式首字母小写
+                    //options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                    //数据格式按原样输出
+                    options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                    //忽略空值
+                    options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                });
+            //ColumnMapper.SetMapper();
         }
         public void ConfigureContainer(ContainerBuilder builder)
         {

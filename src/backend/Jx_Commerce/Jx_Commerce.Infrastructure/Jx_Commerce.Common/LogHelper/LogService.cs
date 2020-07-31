@@ -18,7 +18,7 @@ namespace Jx_Commerce.Common.LogHelper
         static LogService()
         {
             loggerRepository = LoggerManager.CreateRepository("CoreRepository");
-            XmlConfigurator.Configure(loggerRepository, new FileInfo("log4net.config"));//此文件需要选择始终复制
+            XmlConfigurator.Configure(loggerRepository, new FileInfo(AppDomain.CurrentDomain.BaseDirectory + "log4net.config"));//此文件需要选择始终复制
             logInfo = LogManager.GetLogger("CoreRepository", "InfoLog");
             logError = LogManager.GetLogger("CoreRepository", "ErrorLog");
             logDebug = LogManager.GetLogger("CoreRepository", "DebugLog");

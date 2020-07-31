@@ -8,12 +8,19 @@
     <PackageReference Include="Autofac" Version="5.2.0" />
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="5.0.0" />
     <PackageReference Include="Castle.Core" Version="4.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.2.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Jx_Commerce.Application\Jx_Commerce.SystemService\Jx_Commerce.SystemService.csproj" />
     <ProjectReference Include="..\..\Jx_Commerce.Infrastructure\Jx_Commerce.Common\Jx_Commerce.Common.csproj" />
     <ProjectReference Include="..\Jx_Commerce.DataAccess\Jx_Commerce.DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Middlewares\Controller\Swagger\" />
   </ItemGroup>
 
 </Project>

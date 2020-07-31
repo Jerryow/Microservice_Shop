@@ -8,13 +8,11 @@ namespace Jx_Commerce.DataAccess.DapperAccess.DapperBase
 {
     public interface IExcuteDapper<T>
     {
-        //void Excute(Action<IDbConnection> handler);
-        //int ExcuteResult(Action<IDbConnection> handler);
-        //Task ExcuteAsync(Action<IDbConnection> handler);
-        //Task<int> ExcuteAsync(Action<IDbConnection, Task<int>> handler);
+        void Excute(Action<IDbConnection> handler);
+        Task ExcuteAsync(Action<IDbConnection> handler);
         T Excute<T>(Func<IDbConnection, T> handler);
         Task<T> ExcuteAsync<T>(Func<IDbConnection, Task<T>> handler);
-        //void ExecuteTransaction(Action<IDbConnection, IDbTransaction> action);
+        void ExcuteTransaction(Action<IDbConnection, IDbTransaction> action);
     }
 
     public interface IExcuteDapperInterface<T>

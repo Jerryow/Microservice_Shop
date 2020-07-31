@@ -4,3 +4,4 @@ packages
 bin
 obj
 Log
+/src/backend/Jx_Commerce/Jx_Commerce.Api/Jx_Commerce.SystemModule/Jx_Commerce.SystemModule.xml

@@ -17,7 +17,7 @@ namespace Jx_Commerce.CoreCommon.DependencyConfig
             builder.RegisterType<LogService>().As<ILogService>().SingleInstance();
             builder.RegisterType<Test>().As<ITest>().InstancePerDependency();
             builder.RegisterGeneric(typeof(ExcuteDapperBase<>)).As(typeof(IExcuteDapper<>)).InstancePerDependency();
-            builder.RegisterGeneric(typeof(ExcuteDapper<>)).As(typeof(IExcuteDapperInterface<>))
+            builder.RegisterGeneric(typeof(QueryRepository<,>)).As(typeof(IQueryRepository<,>))
                 .InstancePerDependency()
                 .EnableInterfaceInterceptors()
                 .InterceptedBy(typeof(AopIocInterceptor));

@@ -14,13 +14,13 @@ namespace Jx_Commerce.DataAccess.DapperAccess
     public class ExcuteDapperBase<T> : IExcuteDapper<T>
     {
         private readonly string _connectionStr;
-        //private readonly IConfiguration _configuration;
-        //public ExcuteDapperBase(IConfiguration configuration)
-        public ExcuteDapperBase()
+        private readonly IConfiguration _configuration;
+        public ExcuteDapperBase(IConfiguration configuration)
+        //public ExcuteDapperBase()
         {
-            //_configuration = configuration;
-            //_connectionStr = _configuration.GetSection("DataAccess:ConnectionStr:Master").Value;
-            _connectionStr = "";
+            _configuration = configuration;
+            _connectionStr = _configuration.GetSection("DataAccess:ConnectionStr:Master").Value;
+            //_connectionStr = "";
         }
 
         private IDbConnection CreateSqlConnection()
@@ -28,52 +28,60 @@ namespace Jx_Commerce.DataAccess.DapperAccess
             return new MySqlConnection(_connectionStr);
         }
 
-        //public void Excute(Action<IDbConnection> handler)
-        //{
-        //    using (IDbConnection connection = CreateSqlConnection())
-        //    {
-        //        handler(connection);
-        //    }
-        //}
+
+        public void Excute(Action<IDbConnection> handler)
+        {
+            using (IDbConnection connection = CreateSqlConnection())
+            {
+                handler(connection);
+            }
+        }
+
+        public async Task ExcuteAsync(Action<IDbConnection> handler)
+        {
+            using (IDbConnection connection = CreateSqlConnection())
+            {
+                await Task.Factory.StartNew(() =>
+                {
+                    handler(connection);
+                });
+            }
+        }
 
         public T Excute<T>(Func<IDbConnection, T> handler)
         {
-            Console.WriteLine(_connectionStr);
             using (IDbConnection connection = CreateSqlConnection())
             {
-                Console.WriteLine(connection.State);
                 return handler(connection);
             }
         }
 
-        public Task<T> ExcuteAsync<T>(Func<IDbConnection, Task<T>> handler)
+        public async Task<T> ExcuteAsync<T>(Func<IDbConnection, Task<T>> handler)
         {
             using (IDbConnection connection = CreateSqlConnection())
             {
-               return handler(connection);
+               return await handler(connection);
             }
         }
 
-        //public Task<int> ExcuteAsync(Action<IDbConnection, Task<int>> handler)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-
-        //public Task<T> ExcuteAsync(Action<IDbConnection, Task<T>> handler)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public int ExcuteResult(Action<IDbConnection> handler)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //public void ExecuteTransaction(Action<IDbConnection, IDbTransaction> action)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public void ExcuteTransaction(Action<IDbConnection, IDbTransaction> action)
+        {
+            using (IDbConnection connection = CreateSqlConnection())
+            {
+                connection.Open();
+                IDbTransaction transaction = connection.BeginTransaction();
+                try
+                {
+                    action(connection, transaction);
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw ex;
+                }
+            }
+        }
     }
 
     public class ExcuteDapper<T> : IExcuteDapperInterface<T>

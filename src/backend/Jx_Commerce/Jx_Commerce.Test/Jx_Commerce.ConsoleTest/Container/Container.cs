@@ -29,7 +29,6 @@ namespace Jx_Commerce.ConsoleTest.Container
             builder.RegisterGeneric(typeof(ExcuteDapperBase<>)).As(typeof(IExcuteDapper<>)).InstancePerDependency();
             builder.RegisterType<TestAop>().As<ITestAop>().SingleInstance();
             builder.RegisterType<System_UserService>().As<ISystem_UserService>().InstancePerDependency();
-            builder.RegisterGeneric(typeof(System_UserServiceT<>)).As(typeof(ISystem_UserServiceT<>)).InstancePerDependency();
             builder.RegisterType<Test>().As<ITest>().SingleInstance();
             builder.RegisterType<GetData>().InstancePerDependency();
             _container = builder.Build();

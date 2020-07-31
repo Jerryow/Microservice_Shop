@@ -16,6 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Kogel.Dapper.Extension;
 using Kogel.Dapper.Extension.MySql;
+using Jx_Commerce.DataAccess.DapperAccess.DapperBase;
 
 namespace Jx_Commerce.ConsoleTest
 {
@@ -127,15 +128,14 @@ namespace Jx_Commerce.ConsoleTest
                 //}
             }
 
-
             Console.ReadKey();
         }
     }
 
     public class GetData
     {
-        private readonly ISystem_UserServiceT<System_User> _service;
-        public GetData(ISystem_UserServiceT<System_User> service)
+        private readonly IQueryRepository<System_User, int> _service;
+        public GetData(IQueryRepository<System_User, int> service)
         {
             _service = service;
         }

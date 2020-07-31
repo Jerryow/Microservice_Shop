@@ -8,9 +8,9 @@ namespace Jx_Commerce.DataAccess.DapperAccess.Entity
     /// <summary>
     /// 所有
     /// </summary>
-    public class ModelEntity
+    public class ModelEntity<T>
     {
-        [Identity]
-        public int PKID { get; set; }
+        [Identity(IsIncrease = true)]
+        public T PKID { get; set; }
     }
 }
